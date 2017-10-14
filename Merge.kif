@@ -8779,6 +8779,18 @@ the 18th day of August 1912.")
       (equal (SubtractionFn ?YEAR2 ?YEAR1) 1))
    (meetsTemporally ?YEAR1 ?YEAR2))
 
+(subclass Decade TimeInterval)
+(relatedInternalConcept Decade DecadeDuration)
+(documentation Decade EnglishLanguage "The &%Class of all calendar &%Decades.")
+
+(=>
+   (instance ?D Decade)
+   (duration ?D (MeasureFn 1 DecadeDuration)))
+
+(=>
+   (instance ?D Decade)
+   (duration ?D (MeasureFn 10 YearDuration)))
+
 ;; dawn, dusk
 
 (subclass Midnight TimePoint)
@@ -8892,6 +8904,13 @@ is the singular &%Class of the last &%QuarterYear of the &%Year 1999.")
 (=>
   (equal ?Q (QuarterFn ?N ?Y))
   (during ?Q ?Y))
+
+(subclass QuarterYear TimeInterval)
+(documentation QuarterYear EnglishLanguage "A period of three months.")
+
+(=>
+   (instance ?Q QuarterYear)
+   (duration ?Q (MeasureFn 3 MonthDuration)))
 
 (subclass LeapYear Year)
 (documentation LeapYear EnglishLanguage "The &%Class of all leap years.  These are years
@@ -11024,7 +11043,7 @@ events.")
 (documentation Precipitation EnglishLanguage "&%Precipitation is the process of
 water molecules falling from the air to the ground, in either a
 liquid or frozen state.")
-(documentation Precipitation Chineseanguage "&%Precipitation 是水分子以液体或结冰状态从天上掉到
+(documentation Precipitation ChineseLanguage "&%Precipitation 是水分子以液体或结冰状态从天上掉到
 地上的过程。")
 
 (=>
@@ -14848,6 +14867,10 @@ proteins, and fats, that can be ingested by a the given class of living
       (instance ?NUTRIENT Nutrient)
       (part ?NUTRIENT ?FOOD))))
 
+(documentation Food EnglishLanguage "Food that is fit for &%Humans.")
+(equal Food (FoodForFn Human))
+(subclass Food SelfConnectedObject)
+
 (subclass Meat SelfConnectedObject)
 (documentation Meat EnglishLanguage "Any food which was originally part of an
 &%Animal and is not ingested by drinking, including eggs and animal
@@ -17911,7 +17934,7 @@ discernable.")
 (contraryAttribute Unilluminated Illuminated)
 (documentation Unilluminated EnglishLanguage "The &%Attribute of &%Regions that are
 unilluminated, i.e in which no shapes are visually discernable.")
-(documentation Innilluminated ChineseLanguage "这是没有受到照亮 &%Region 的 &%Attribute，也
+(documentation Unilluminated ChineseLanguage "这是没有受到照亮 &%Region 的 &%Attribute，也
 就是说视觉不能识别它的任何形状。")
 
 ;; NS: delete.
@@ -18365,7 +18388,7 @@ female in nature.")
 (contraryAttribute Male Female)
 (documentation Male EnglishLanguage "An &%Attribute indicating that an &%Organism is
 male in nature.")
-(documentation Mle ChineseLanguage "这是表示一个 &%Organism 天生是雄性的 &%Attribute。")
+(documentation Male ChineseLanguage "这是表示一个 &%Organism 天生是雄性的 &%Attribute。")
 (=>
    (instance ?ANIMAL Animal)
    (exists (?ATTR)
